@@ -1,0 +1,1 @@
+oc debug node/mbooth-cloud29-2kg99-master-0 -- chroot /host bash -c "mkdir -p /var/lib/etcd/fio-test; podman run --rm --privileged -v /var/lib/etcd/fio-test:/test -ti quay.io/peterducai/openshift-etcd-suite:latest fio; rm -rf /var/lib/etcd/fio-test" | tee fio-test.out  
