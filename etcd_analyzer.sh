@@ -10,7 +10,7 @@ echo -e ""
 echo -e "-[${ETCD[0]}]--------------------"
 
 echo -e ""
-oc exec ${ETCD[0]} -c etcdctl -- etcdctl endpoint status -w table
+oc exec ${ETCD[0]} -c etcdctl -n openshift-etcd -- etcdctl endpoint status -w table
 echo -e "IPs:"
 for i in $(oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[0]} -c etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
 echo -e "Errors and dropped packets:"
@@ -32,7 +32,7 @@ echo -e "COMPACTION: \n$(oc logs ${ETCD[0]} -c etcd -n openshift-etcd|grep compa
 echo -e ""
 echo -e "-[${ETCD[1]}]--------------------"
 echo -e ""
-oc exec ${ETCD[1]} -c etcdctl -- etcdctl endpoint status -w table
+oc exec ${ETCD[1]} -c etcdctl -n openshift-etcd -- etcdctl endpoint status -w table
 echo -e ""
 echo -e "IPs:"
 for i in $(oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[1]} -c etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
