@@ -12,9 +12,9 @@ echo -e "-[${ETCD[0]}]--------------------"
 echo -e ""
 oc exec ${ETCD[0]} -c etcdctl -n openshift-etcd -- etcdctl endpoint status -w table
 echo -e "IPs:"
-for i in $(oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[0]} -c etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
+for i in $(oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
 echo -e "Errors and dropped packets:"
-for i in $(oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[0]} -c etcd -- ip -s link show dev $i; done
+for i in $(oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[0]} -c etcd -n openshift-etcd -- ip -s link show dev $i; done
 echo -e ""
 echo -e "Latency against API is $(curl -sk https://api.$(echo ${ETCD[0]}| sed 's/.*://').com -w "%{time_connect}\n"|tail -1)"
 echo -e ""
@@ -35,9 +35,9 @@ echo -e ""
 oc exec ${ETCD[1]} -c etcdctl -n openshift-etcd -- etcdctl endpoint status -w table
 echo -e ""
 echo -e "IPs:"
-for i in $(oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[1]} -c etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
+for i in $(oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
 echo -e "Errors and dropped packets:"
-for i in $(oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[1]} -c etcd -- ip -s link show dev $i; done
+for i in $(oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[1]} -c etcd -n openshift-etcd -- ip -s link show dev $i; done
 echo -e ""
 echo -e "Latency against API is $(curl -sk https://api.$(echo ${ETCD[1]}| sed 's/.*://').com -w "%{time_connect}\n"|tail -1)"
 echo -e ""
@@ -58,9 +58,9 @@ echo -e ""
 oc exec ${ETCD[2]} -c etcdctl -n openshift-etcd -- etcdctl endpoint status -w table
 echo -e ""
 echo -e "IPs:"
-for i in $(oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[2]} -c etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
+for i in $(oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do echo $i && oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ip a s|grep inet|grep -v inet6|grep -v '127.'|head -2; done
 echo -e "Errors and dropped packets:"
-for i in $(oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[2]} -c etcd -- ip -s link show dev $i; done
+for i in $(oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ls /sys/class/net|grep -v veth|grep -v lo); do oc exec ${ETCD[2]} -c etcd -n openshift-etcd -- ip -s link show dev $i; done
 echo -e ""
 echo -e "Latency against API is $(curl -sk https://api.$(echo ${ETCD[2]}| sed 's/.*://').com -w "%{time_connect}\n"|tail -1)"
 echo -e ""
